@@ -8,17 +8,26 @@ var filesPromise = prom.read(path);
 filesPromise.then(function(files) {
     var newFiles = files.map(function(item) {
         var newItem = __dirname + '/files/' + item;
-        prom.stat(newItem).then(function(stats) {
+        return prom.stat(newItem).then(function(stats) {
             if(stats.isDirectory()) {
                 console.log(item + " is a directoy");
             } else {
                 console.log(item + " is not a directoy");
             };
         });
-
     });
-}).then(function(newFiles) {
-    console.log('done!')
+    return Promise.all(newFiles);
+}).then(function() {
+    console.log('done!');
 }).catch(function(e) {
     console.log(e);
 });
+
+
+// Promise.all([
+//
+// ]).then(function() {
+//     console.log("done!")
+// }).catch(function() {
+//     console.log('At least one of my promises was rejected :(');
+// });

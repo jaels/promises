@@ -8,7 +8,7 @@ function bonus (path) {
 
     filesPromise.then(function(files) {
         var newFiles = files.map(function(item) {
-            prom.stat(path+item).then(function(stats) {
+            return prom.stat(path+item).then(function(stats) {
                 if(stats.isDirectory()) {
                     console.log(path+item + " is a directoy");
 
@@ -19,6 +19,9 @@ function bonus (path) {
             });
 
         });
+        return Promise.all(newFiles);
+    }).then(function() {
+        console.log('done!');
     }).catch(function(e) {
         console.log(e);
     });
