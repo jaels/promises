@@ -22,12 +22,3 @@ filesPromise.then(function(files) {
 }).catch(function(e) {
     console.log(e);
 });
-
-
-// Promise.all([
-//
-// ]).then(function() {
-//     console.log("done!")
-// }).catch(function() {
-//     console.log('At least one of my promises was rejected :(');
-// });
